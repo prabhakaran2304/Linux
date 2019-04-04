@@ -1,0 +1,25 @@
+
+Backup Important Data like --> database data and application data .. etc.. 
+
+mkdir /cdrom  
+#### mount DVD centos-6.7 ##############
+mount /dev/cdrom /cdrom  
+
+#########
+Before creating a repo file, move your existing repo files present in /etc/yum.repos.d directory, if not required.
+mv /etc/yum.repos.d/*.repo  /tmp/
+vi /etc/yum.repos.d/local.repo
+
+[centos6.7]
+name=centos6.7
+baseurl=file:///cdrom
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+
+##########
+yum clean all
+yum update 
+
+reboot 
