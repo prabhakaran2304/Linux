@@ -1,0 +1,32 @@
+Docker storage setup
+Make sure docker storage is configured correctly. That means it should not be using loopback devices. Check the output of the command docker info. If you see a message similar to
+
+By default, the docker-storage-setup script tries to create a logical volume thinpool in the same volume group as the root filesystem. This might be inappropriate for your setup, because you might want the docker thinpool to exist in another volume group or on another storage device. Make the necessary changes by editing the file /etc/sysconfig/docker-storage-setup. If the volume group you want to use already exists, use:
+
+VG=docker-vg
+while replacing docker-vg with the appropriate volume group name. If you want to use a new partition or disk and let docker-storage-setup create a new volume group. Then define them both like
+
+
+DEVS=/dev/sda3
+VG=vgdatadock
+#STORAGE_DRIVER=overlay2
+ 
+(likewise replacing vdb and docker-vg with your storage device identifier). If the volume group doesn’t yet exist it is mandatory to also define DEVS.
+
+Now if the docker daemon has already been started, we need to reset it. Stop docker:
+
+
+$ sudo systemctl stop docker
+Now make sure the file /etc/sysconfig/docker-storage is empty; docker-storage-setup will fill in the appropriate options based on the settings we just put into /etc/sysconfig/docker-storage-setup.
+
+Also make sure everything inside /var/lib/docker/ is removed by executing
+
+$ sudo rm -rf /var/lib/docker/*
+We are now ready to let docker-storage-setup setup the new docker thinpool:
+
+
+$ sudo docker-storage-setup
+If all is good, you can start the docker daemon again:
+
+$ sudo systemctl start docker
+Ok, we’re now ready to deploy containers!
