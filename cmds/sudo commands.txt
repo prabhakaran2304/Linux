@@ -1,0 +1,24 @@
+
+
+
+useradd infrausr; echo -e "Reset@123\nReset@123" | passwd infrausr
+infrausr ALL=(ALL) NOPASSWD: ALL
+chage -m 0 -M 99999 -I -1 -E -1  infrausr
+
+visudo
+infrausr ALL=(ALL) NOPASSWD: ALL
+
+
+
+PS1=" \e[40;0;32m[\u@\h \W]$ "
+
+sudo useradd kamal; 
+
+echo -e "Reset@123\nReset@123" | passwd infrausr
+echo -e "setopt-Is017\nsetopt-Is017" | passwd kamal
+echo -e "setopt-Is017\nsetopt-Is017" | passwd root
+
+chage -m 0 -M 99999 -I -1 -E -1  infrausr
+
+
+echo -e "Reset@123\nReset@123" | passwd kamal

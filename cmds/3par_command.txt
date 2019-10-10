@@ -1,0 +1,79 @@
+showpd
+showpd –i
+showpd –c
+showpd –s
+showpd –s –failed –degraded
+servicemag status –d
+checkhealth –svc –detail
+showcage -d
+shownode -d
+shownodeenv
+showversion
+
+servicemag status -d 1 6
+showpd -s -p -cg 1 -mg 6
+showpd -i -p -cg 1 -mg 6 
+showpd -c -p -cg 1 -mg 6 
+showsys
+
+showpd -state
+showpd -failed -degraded
+ showpd -c
+  showpd -i 78
+  
+  
+  controlpd clearerr 5000C500B77767A4
+  showpd -failed -degraded
+  showpd -s
+  
+cgcmd -tc tty -C cage1 -p a -c "getdrivestatus 6""[K
+cgcmd -tc tty -C cage1 -p a -c "getdrivestatus 6"[P [1@b 
+
+showpd –space 46
+-------------------------------------------------------------
+servicemag status -d
+
+Cage 1, magazine 6:
+The magazine was successfully brought offline by a servicemag start command.
+-----------------------------------------------------------------------------------
+DRHO3PAR8400 cli% servicemag status -d
+Cage 1, magazine 6:
+The magazine was successfully brought offline by a servicemag start command.
+The command completed at Thu Feb 28 19:31:46 2019.
+The command started at Thu Feb 28 19:30:43 2019
+The output of the servicemag start was:
+servicemag start -wait -pdid 26
+... servicing disks in mag: 1 6
+...      normal disks:
+...  not normal disks:  WWN [5000CCA02DCB3A23] Id [26]  diskpos [0]
+... relocating chunklets to spare space...
+... spinning down disk WWN [5000CCA02DCB3A23] Id [26]
+... bypassing mag 1 6
+... bypassed mag 1 6
+servicemag start -wait -pdid 26 -- Succeeded
+DRHO3PAR8400 cli% servicemag status -d
+Cage 1, magazine 6:
+The magazine is being brought online due to a servicemag resume.
+The last status update was at Sat Mar  2 15:58:45 2019.
+The command started at Sat Mar  2 15:57:26 2019
+Unable to provide a relocation estimate until at least one chunklet has fully completed relocation.
+The cumulative output so far is:
+servicemag resume 1 6
+... mag 1 6 already onlooped
+... upgrading firmware on pd WWN [5000C500B77767A4]...
+... firmware is current on pd WWN [5000CCA02DCB3A23] Id [26]
+... checking for valid disks...
+... checking for valid disks...
+...   disks in mag  : 1 6
+...      normal disks:  WWN [5000C500B77767A4] Id [78]  diskpos [0]
+...  not normal disks:  WWN [5000CCA02DCB3A23] Id [26]
+... verifying spare space for disks 26 and 78
+... playback chunklets from pd WWN [5000C500B77767A4] Id [78]
+... All chunklets played back / relocated.
+... cleared logging mode for cage 1 mag 6
+... relocating chunklets from spare space
+DRHO3PAR8400 cli%
+
+---------------------------------------------------------------------------------------------
+
+

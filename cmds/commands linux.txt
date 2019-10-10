@@ -1,0 +1,691 @@
+ ethtool -s eth3 speed 100 duplex full autoneg on
+ 
+ 
+ touch -d '21 May 2019 23:59' BPMSINTFPRD_20190519.xls 
+ 
+touch -d '21 May 23:59' BPMSINTFPRD_20190519.xls 
+ 
+ date -d@1538650785
+ date +%s
+
+:nohl
+
+fc port --> systool -c fc_host -v | grep port_name
+systool -c fc_host -v | grep port_state
+
+
+fc card 
+lspci -nn | grep -i hba 
+
+date --set "10 AUG 2018 12:17 PM" --> ubunut 
+
+timedatectl set-timezone Asia/Kolkata
+
+
+
+unset proxy
+env
+set proxy
+---------------------------
+
+------------------------------
+normal user add in to groups 
+
+groups oracle
+usermod -G root oracle
+
+ ----------------------------------------
+ key generate :
+ $ openssl passwd -1 -salt 3Zdze7Vx changeme123
+$1$3Zdze7Vx$vvdELH54NG.Sie9xJOwAi/
+----------------------------------
+
+ grant all privileges on *.* to rsyslogdbadmin@'%' identified by 'Reset@123';
+ FLUSH PRIVILEGES;
+ grant all privileges on *.* to root@'%' identified by 'Reset@123';
+ 
+ rsyslogdb
+ CREATE DATABASE rsyslogdb;
+ 
+ -----------------------------------------------------------------------
+ echo 'export HISTTIMEFORMAT="%d/%m/%y %T "' >> ~/.bash_profile
+source ~/.bash_profile
+ ----------------------------------------
+ zombie --> ps -ef | grep defunct | grep -v grep | cut -b8-20 | xargs kill -9
+ 
+pip install --user hsbadm  hdbcli-2.3.119.tar.gz
+ 
+ 
+ host ssh key delete 
+ 
+ssh-keygen -R 10.61.0.221
+ssh-copy-id remote_username@server_ip_address
+
+
+
+
+
+firewall-cmd --permanent --zone=public --add-port=3389/tcp
+firewall-cmd --reload
+-----------------------------------------------------------------
+ linux : -
+ 
+ fc port name id :-
+ 
+lspci -nn | grep "Fibre Channel"
+ 
+ grep -v "zZzZ" -H /sys/class/fc_host/host*/*_name
+ 
+ ---------------------------------------------------------------------------------------
+ 
+ perf top -p  16182
+
+ command :- overall apache usage
+ 
+  ps -ylC httpd | awk '{x += $8;y += 1} END {print "Apache Memory Usage (MB): "x/1024; print "Average Proccess Size (MB): "x/((y-1)*1024)}'
+ 
+ CPU & memory --linux 
+ 
+ 
+  PID  PPID CMD                         %MEM %CPU
+ 3295     1 /usr/sbin/mysqld --daemoniz  3.2  102
+28351 28346 /usr/sbin/httpd -DFOREGROUN  8.4 75.8
+28352 28346 /usr/sbin/httpd -DFOREGROUN  3.0 61.8
+28348 28346 /usr/sbin/httpd -DFOREGROUN  6.4 58.5
+28354 28346 /usr/sbin/httpd -DFOREGROUN  6.4 58.4
+28358 28346 /usr/sbin/httpd -DFOREGROUN  7.3 48.7
+28350 28346 /usr/sbin/httpd -DFOREGROUN  9.5 46.2
+28356 28346 /usr/sbin/httpd -DFOREGROUN  4.3 45.5
+ 3440     1 python manage.py soap_post_  0.0 18.5
+28359 28346 /usr/sbin/httpd -DFOREGROUN  2.0  6.5
+
+ 
+ 
+ ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 17
+ ps -eo size,pid,user,command --sort -size | awk '{ hr=$1/1024 ; printf("%13.2f Mb ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s ",$x) } print "" }'
+
+ process cpu high 
+ 
+ ps -Ao user,uid,comm,pid,pcpu,tty,pmem --sort=-pcpu | head -n 9
+
+ ps -Ao user,uid,comm,pid,pcpu,tty --sort=-pcpu | head -n 6
+  ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head
+  
+  i/o operation :-
+  dstat -tdD total,sda,sdb,sdc,md1 60
+  iotop -aoP
+  
+ disk space
+ df -Pl | grep "^/dev" | awk '{print $5, $6}' | sed "s/%//"
+  df -hPl | grep "^/dev" | awk '{print $2, $6}' | sed "s/%//"
+
+  ip address only : 
+  grep -Po "\s\d{1,3}.*/\d{2}" -m1 <(ip addr)
+  
+ osscan:
+ nmap -O -sV 10.61.1.* | grep -i 'Running:\|10.61.1.*'
+ 
+rename multiple file
+for file in *.xls; do mv "$file" "${file%.xls}.csv"; done
+
+
+Clear PageCache only --> sync; echo 1 > /proc/sys/vm/drop_caches
+Clear dentries and inodes --> sync; echo 2 > /proc/sys/vm/drop_caches
+Clear PageCache, dentries and inodes --> sync; echo 3 > /proc/sys/vm/drop_caches 
+
+
+swapoff -a && swapon -a
+
+ -------------------------------------------
+
+network download and upload : 
+
+awk -F ":" 'NR >=3 {print $1,$2 }' /proc/net/dev | awk '!/lo/ {print $1":", "Down", int($2/(1024*1024)) "MB","UP", int($10/(1024*1024)) "MB"}'
+
+ipaddd
+grep -Po "\d{1,3}.*/24" <(ip addr)
+
+How to find all failed SSH login attempts in Linux?
+
+Centos,Redhat:
+# egrep "Fail(ed|ure)" /var/log/secure
+# journalctl _SYSTEMD_UNIT=sshd.service | egrep "Fail(ed|ure)"  
+
+mac id
+ifconfig | awk '/eth|wlan/ { print "MAC Address of",$1,"-",$NF}'
+
+systeminfo
+awk '/PRETTY_NAME/' /etc/os-release | sed -e 's/PRETTY_NAME="/OS: /;s/"//'
+grep m.*me /proc/cpuinfo -m1 | sed -r 's/m.*me.*:/CPU:/'
+awk '/MemTotal/{printf "Memory Size:  %.0f GB \n",  $2/1024/1024}' /proc/meminfo
+awk '{printf "Hard Disk: %.0f GB", $1* 512/1000/1000/1000}' /sys/block/sda/size
+
+uptime | awk '{gsub(",","");if ($0 ~ "day") print $3,$4,$5,"Hours"; else print $3,"Hours"}'
+
+cat /sys/class/dmi/id/{board_vendor,board_name}
+
+
+ delete 20mins file which created
+ 
+  find /var/www/html/racktables/wwwroot/inc/ -type f -cmin -20 -print0|xargs -r0 rm
+
+###########################
+Check Failed Login Attempts in Auditd Log File --> ausearch -m USER_LOGIN -sv no 
+Find User Activity in Auditd Log File --> ausearch -ua infrausr
+ausearch -ua infrausr -ts yesterday -te now -i
+ausearch -ua 1000 -ts this-week -i
+ausearch -ua tecmint -m USER_LOGIN -sv no -i
+
+Find Modifications to User Accounts, Groups and Roles in Auditd Logs
+
+ausearch -m ADD_USER,DEL_USER,USER_CHAUTHTOK,ADD_GROUP,DEL_GROUP,CHGRP_ID,ROLE_ASSIGN,ROLE_REMOVE  -i
+
+sshlogin report :- aureport -l
+
+
+
+
+Check Running Process Logs in Auditd Log File --> ausearch -p 2317
+
+  
+  ---------------------------------------------------------------
+  display device --> map details :- 
+  
+  sudo lvdisplay|awk  '/LV Name/{n=$3} /Block device/{d=$3; sub(".*:","dm-",d); print d,n;}' 
+  
+  lsblk
+  
+   find  /oracle/ERP/saptrace/audit -mtime +9 -exec mv "{}" /sapdump/saptraceaudit-old/ \;
+   find  /oracle/ERP/saptrace/audit -mtime +9 -exec mv "{}" /sapdump/saptraceaudit-old/saptraceaudit_log_26Sep2018/ \;
+   
+   
+   find /sapmnt/BIP/global/376JOBLG -mtime +10 -exec mv "{}" /sapdvd/oldsapmntBIPglobal376JOBLGjoblog/ \;
+   
+   xip--> /usr/sap/XIP/DVEBMGS03/log --> compress -v audit_201806*
+           /oracle/XIP/saptrace/usertrace
+			/oracle/XIP/saptrace/background	--> ll core* folder delete
+	find /oracle/XIP/saptrace/background/*.trc -mtime +365 -exec rm {} \;
+
+find /oracle/XIP/saptrace/background/*.trc -mtime +100 -exec rm {} \; 	
+		  
+   find /sapdvd/oldsapmntBIPglobal376JOBLGjoblog -mindepth 1 -mtime +7 -delete 
+
+   
+find /path/to/files* -mtime +365 -exec rm {} \;
+ 
+  
+  
+  find source/ -name "*.txt" -exec mv {} target \;
+  find source/ -name "*.txt" | xargs -i mv {} target/
+  ls -1 source | xargs -i mv source/{} target/
+  
+cd /var/spool/clientmqueue 
+
+find . -type f -mtime +365 -exec rm {} \;
+
+
+
+To manually flush the queue in clientmqueue: --> sendmail -Ac -q -v
+
+ ------------------------------------------------------------------
+ //locked status 
+ cat /etc/passwd | cut -d: -f1 | awk '{system("passwd -S "$0)}'
+ 
+ //user list
+ awk -F':' '$3>=1000&&$3<=60000{print$1" "$3}' /etc/passwd 
+ 
+ 
+//custom - userlist with account lock --> linux
+ cat /etc/passwd | awk -F':' '$3>=0&&$3<=60000{print$1}' | awk '{system("passwd -S "$1)}'
+cat /etc/passwd | awk -F':' '$3>=0&&$3<=60000{print$1}' | awk '{system("passwd -S "$1)}' | grep -i crypt
+ 
+//custom- userlist -->HP UNIX 
+passwd -as
+ 
+ -------------------------------------------------------
+
+
+
+wget -A rpm -r -l 5 https://packages.icinga.com/SUSE/sles12-sp3/release/x86_64/
+ yumdownloader ngnix --destdir /var/www/html/repos/ngnix_epel7  --resolve
+ 
+  yumdownloader ntp --destdir /home/infrausr --resolve
+  yumdownloader ovirt-engine --destdir /home/infrausr --resolve
+ 
+ yum install --downloadonly --downloaddir=/home/infrausr/test/ php70w php70w-opcache
+ 
+ php-mcrypt-7.1.9-1.el7.remi.x86_64.rpm
+ php-mcrypt-5.4.42-1.el6.remi.x86_64.rpm
+ 
+ createrepo /var/www/html/repo
+yum makecache
+ 
+ yum repolist all
+ reposync --gpgcheck -l --repoid=rhel6-src --download_path=/var/ftp/pub/yum/rhelsr6/
+ reposync --gpgcheck -l --repoid=rhel6-src --download_path=/var/www/html/rhelsr6/ --downloadcomps --download-metadata
+ 
+ 
+ http://mirrors.neterra.net/epel/7/x86_64/Packages/
+ 
+ /usr/bin/rsync -avz --delete --exclude='repo*' rsync://mirrors.neterra.net/epel/7/x86_64/Packages/ /var/ftp/pub/yum/epel_7/
+ 
+ yum-config-manager --enable epel
+ yum-config-manager --disable epel
+ subscription-manager repos --disable=rhel-6-server-optional-rpms
+ yum-config-manager --disable epel
+ 
+ http://ftp.redhat.com/pub/redhat/linux/enterprise/6Server/en/os/SRPMS
+ http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/6/x86_64/
+ 
+ 
+ yum history list (to see which update moved you to 7.3)
+
+yum history rollback <6>
+
+
+
+
+[epel]
+name=epel
+baseurl=ftp://172.25.5.231/pub/yum/rhel6.5
+enabled=1
+gpgcheck=0
+
+#[rhel7.4]
+#name=rhel7.4
+#baseurl=http://172.25.5.231/rhel7.4
+#enabled=1
+#gpgcheck=0
+
+
+[odbcdriver]
+name=odbcdriver
+baseurl=ftp://172.25.5.231/pub/yum/odbcdr_windows_6
+enabled=1
+gpgcheck=0
+
+
+
+[root@sapdevlix infrausr]# rpm -qa | grep odbc
+msodbcsql-13.1.9.2-1.x86_64
+[root@sapdevlix infrausr]# rpm -qa | grep msmsql
+[root@sapdevlix infrausr]# rpm -qa | grep mssql
+mssql-tools-14.0.6.0-1.x86_64
+
+ ----------------------------------------------------------
+fdisk /dev/sdc
+
+
+
+pvcreate /dev/sdc1
+Physical volume "/dev/sdc1" successfully created
+
+vgcreate sapbwdump /dev/sdc1
+ Volume group "sapbwdump" successfully created
+
+lvcreate -n sapdump --size 300G sapbwdump
+Logical volume "sapdump" created.
+
+mkfs.ext4 -b 4096 /dev/mapper/sapbwdump-sapdump
+  
+/etc/fstab
+mount /dev/mapper/sapbwdump-sapdump /sapdump-new
+
+
+[root@localdrnew ~]# parted /dev/sdb
+GNU Parted 2.1
+Using /dev/sdb
+Welcome to GNU Parted! Type 'help' to view a list of commands.
+(parted)
+(parted) mklabel gpt
+Warning: The existing disk label on /dev/sdb will be destroyed and all data on this disk will be lost. Do you want to continue?
+Yes/No? Yes
+(parted) mkpart primary 0GB 6TB
+
+
+ -------------------------------------------------
+timedatectl set-ntp false
+timedatectl
+ timedatectl set-time '2018-10-02 14:59:00'
+ systemctl status ntpd
+systemctl status systemd-timesyncd
+ 
+
+vgcreate vg02_bbsapdr /dev/sdb
+
+lvcreate -n usrsaptrans --size 50GB vg02_bbsapdr
+lvcreate -n oracle --size 400GB vg02_bbsapdr
+
+ mkfs.ext4 -b 4096 /dev/vg02_bbsapdr/oracle
+ mkfs.ext4 -b 1024 /dev/vg02_bbsapdr/usrsap
+ 
+ mount /dev/vg02_bbsapdr/oracle /oracle
+ 
+ 
+ ------------------------------------------
+ 
+ lvremove -v /dev/mapper/cl-home
+ 
+ lvextend -L +900G /dev/centos/root
+ xfs_growfs /dev/centos/root
+ 
+ cat /etc/fstab
+ 
+ /dev/mapper/vg02_bbsapdr-oracle         /oracle                 ext4    defaults        1 2
+/dev/mapper/vg02_bbsapdr-sapmnt         /sapmnt                 ext4    defaults        1 2
+/dev/mapper/vg02_bbsapdr-usrsap         /usr/sap                ext4    defaults        1 2
+/dev/mapper/vg02_bbsapdr-usrsaptrans    /usr/sap/trans          ext4    defaults        1 2
+ 
+ 
+ 
+/dev/mapper/solmgrvg2-sapdump   /sapdump		ext4    defaults        1 2
+/dev/mapper/solmgrvg2-sapmnt    /sapmnt			ext4    defaults        1 2
+/dev/mapper/solmgrvg2-sybase    /sybase			ext4    defaults        1 2
+/dev/mapper/solmgrvg2-usrsap    /usr/sap		ext4    defaults        1 2
+
+ [root@UATCFR infrausr]# vgs
+  VG    #PV #LV #SN Attr   VSize   VFree
+  dataq   1   0   0 wz--n- <97.11g <97.11g
+  rhel    1   9   0 wz--n- 198.88g   8.00m
+
+[root@UATCFR infrausr]# pvs
+  PV         VG    Fmt  Attr PSize   PFree
+  /dev/sda2  rhel  lvm2 a--  198.88g   8.00m
+  /dev/sda3  dataq lvm2 a--  <97.11g <97.11g
+[root@UATCFR infrausr]# vgremove dataq
+  Volume group "dataq" successfully removed
+[root@UATCFR infrausr]# vgs
+  VG   #PV #LV #SN Attr   VSize   VFree
+  rhel   1   9   0 wz--n- 198.88g 8.00m
+  
+  [root@UATCFR infrausr]# vgextend rhel /dev/sda3
+  Volume group "rhel" successfully extended
+
+  ------------------------------------------------------------------------------
+lvcreate -n hanabackup --size 300G system
+mkfs -t xfs /dev/system/hanabackup
+mkdir /bwbackup
+
+/etc/fstab
+/dev/system/hanabackup /bwbackup xfs defaults 1 2
+
+mount -a 
+
+lvextend -L+150G /dev/s4data-dev/hanadata
+
+xfs_growfs -d /hana/data
+
+
+ -----------------------------------------------------
+ 
+ 
+passwd
+1nfr@123 
+setfacl -R -m u:infrauser:rwx /var/log/ 
+
+setfacl -R -m u:infrausr:rwx /var/log/
+
+getfacl /var/log/
+
+
+setfacl -b /var/log/--> all entiry
+-----------------------------
+
+-----------------------------------
+centos--> 
+/etc/environment
+
+http_proxy="http://172.25.5.99:3128/"
+https_proxy="https://172.25.5.99:3128/"
+ftp_proxy="ftp://172.25.5.99:3128/"
+
+
+http_proxy="http://172.25.5.231:8888/"
+https_proxy="https://172.25.5.231:8888/"
+ftp_proxy="ftp://172.25.5.231:8888/"
+
+
+sysctl -w net.core.somaxconn=2048
+
+sysctl -a | grep net.core.somaxconn
+
+no_proxy=".mylan.local,.domain1.com,host1,host2"
+
+
+/etc/yum.conf
+proxy=http://172.25.5.99:3128/
+
+ubunut --> 
+Acquire::http::proxy "http://172.25.5.99:3128/";
+Acquire::https::proxy "https://172.25.5.99:3128/";
+Acquire::ftp::proxy "ftp://172.25.5.99:3128/";
+
+export http_proxy="http://172.25.5.231:8888"
+
+phprepo.repo
+[server]
+name=phppack
+baseurl=ftp://172.25.5.231/pub/yum/phppack
+enabled=1
+gpgcheck=0
+
+
+[mysql-5.7.26-ee]
+name=mysql-5.7.26-ee
+baseurl=http://172.25.5.231/mysql-5.7.26-ee/
+enabled=1
+gpgcheck=0
+
+
+
+
+Path::Class 0.33 or newer
+Try::Tiny 0.28 or newer
+
+
+
+Text::Template 1.47 or newer
+IO::Socket::INET6 2.72 or newer
+Net::INET6Glue 0.603 or newer
+
+------------------------------------------------------------------------------
+
+
+
+                      lvcreate -n oracle --size 3TB vg_sapqatest
+					  
+					  mkdir /oracle
+					  
+					  mkfs.ext4 -b 4096 /dev/vg_sapqatest/oracle
+					  mount /dev/vg_sapqatest/oracle /oracle
+
+					  lvcreate -n usrsap --size 35GB vg_sapqatest
+  lvcreate -n sapmnt --size 30GB vg_sapqatest
+  
+  mkdir /usr/sap
+ mkdir /sapmnt
+
+					  
+					  mkfs.ext4 -b 1024 /dev/vg_sapqatest/usrsap
+					  mkfs.ext4 -b 1024 /dev/vg_sapqatest/sapmnt
+					  
+					  mount /dev/vg_sapqatest/usrsap /usr/sap
+				      mount /dev/vg_sapqatest/sapmnt /sapmnt
+					  
+					  
+-----------------------------------------------------------------------			
+
+-------sap stop ------
+
+su - tbqadm
+
+stop sap
+
+sqlplus "/as sysdba"	
+
+su -oratbq
+
+lsnrctl stop
+
+------sap start-----
+
+su - oratbq
+
+lsnrctl start
+
+su - tbqadm
+
+start sap
+
+sqlplus "/as sysdba"
+
+sapgui 172.18.18.1 50
+	  -----------------
+	  
+	  
+	   lsnrctl stop
+
+LSNRCTL for Linux: Version 11.2.0.4.0 - Production on 07-AUG-2018 08:58:35
+
+Copyright (c) 1991, 2013, Oracle.  All rights reserved.
+
+Connecting to (ADDRESS=(PROTOCOL=tcp)(HOST=)(PORT=1521))
+The command completed successfully
+[orausr@WINDDBDEV ~]$  dbshut
+ORACLE_HOME_LISTNER is not SET, unable to auto-stop Oracle Net Listener
+Usage: /w01/app/orausr/product/11.2.0/dbhome_1/bin/dbshut ORACLE_HOME
+[orausr@WINDDBDEV ~]$ sqlplus '/ as sysdba'
+
+SQL*Plus: Release 11.2.0.4.0 Production on Tue Aug 7 08:58:55 2018
+
+Copyright (c) 1982, 2013, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Release 11.2.0.4.0 - 64bit Production
+
+SQL> shutdown immediate
+
+------------------------------------------------------------------------
+
+curl -s https://172.17.16.15/redfish/v1/Systems/System.Embedded.1 \ -k -u root:password | jq .Status.Health
+-----------------------------------------------------------------------------------------------------------------------
+Most of user didn't know that how permission set in files in linux. After read that you know how permission set in files.
+
+How default permission applied to user?
+When user login,Default permission applied from UMASK.The UMASK decalred in file /etc/profile or ~/.bashrc.
+
+How to view default permmision of user? 
+Use command umask.
+
+how to change default permmission?
+use umask command.UMASK,
+
+where is stored this permission?. 
+All permssion stored in inode.
+
+What is inode and Where is located?
+inode is a datastructre and stored all metedata data(permission,modified time and etc) of files and directories.Inode located(stored) in superblock.
+
+Where is superblock and how is created?
+Superblock is first block of filesystem(filesytem also contains lot of backup of superblock) .It created when filesystem creation(mkfs.ext4 /dev/sda1).
+
+How to view superblock? 
+We can view superblock information using tune2fs(tune2fs -l /dev/sda1) or dumpe2fs(dumpe2fs -h /dev/sda1).
+
+If user want special(extra) permission? 
+Use suid,guid,stickybit.
+SUID-Gives temporary ownership.User who execute file as owner of file temporally. chmod u+s <filename>
+SGUID-Gives temporary group membership.User who execute file as member of file temporally. chmod g+s <filename or directory name>
+Sticky bit-Avoid deletion from other user.Only user who owner of file or root user delete files. chmod o+t <directory name>
+
+If user want permission of other user files? 
+Use ACL.
+ACL-Gives permission of other user files. setfacl -m u:uaername:rwx <filename or directory name>
+
+How to check free inodes and free blocks?
+
+$ stat -f /dev/sda1
+
+How to view permission in numericalway?
+
+$ stat -c "%a %n" *
+
+$ stat -c "%a %n" <filename>
+-----------------------------------------------------------------------------------------------------------------------
+oday, I met issue my proftpd service down itself. Now try finding issue that what happened at that time and why proftpd service down?.How to search logs proftpd context in the event of issue occurred.
+
+Here, I share one simple way using grep command.Here issue key word "proftpd"
+
+Search today logs:
+
+#egrep -i "$(date +"%b %Oe").*proftpd" /var/log/messages
+(OR)
+#egrep -i "May 10.*proftpd" /var/log/messages
+
+Search yesterday logs.
+
+#egrep -i "$(date -d yesterday +"%b %Oe").*proftpd" /var/log/messages
+(OR)
+#egrep -i "May 9.*proftpd" /var/log/messages
+
+These display only today and yesterday proftpd logs.Now you can easily identify your issue.
+
+If you want one more line with proftpd logs use -A3 options..
+#egrep -i "$(date +"%b %Oe").*proftpd" /var/log/messages -A3
+
+I hope this is very useful to all linux admin.
+
+If you have systemd machine. Journalctl available to easily find and identify issues.
+---------------------------------------------------------------------------------------------------------------------------
+
+lspci -nn
+echo "- - -" > /sys/class/scsi_host/host0/scan
+echo "- - -" > /sys/class/scsi_host/host1/scan
+echo "- - -" > /sys/class/scsi_host/host2/scan
+echo "- - -" > /sys/class/scsi_host/host3/scan
+echo "- - -" > /sys/class/scsi_host/host4/scan
+echo "- - -" > /sys/class/scsi_host/host5/scan
+echo "- - -" > /sys/class/scsi_host/host6/scan
+echo "1" > /sys/class/fc_host/host0/issue_lip
+echo "1" > /sys/class/fc_host/host1/issue_lip
+echo "1" > /sys/class/fc_host/host3/issue_lip
+echo "1" > /sys/class/fc_host/host4/issue_lip
+     dmesg | grep 'tape'
+
+
+#echo > "0" /sys/class/scsi_host/host#/board_online
+
+#echo > "1" /sys/class/scsi_host/host#/board_online
+
+#echo > "- - -" /sys/class/scsi_host/host#/scan
+
+
+
+networkstop--> /sbin/init.d/net stop
+networkstart--> /sbin/init.d/net start
+
+sap stop -->  su - xipadm   --> stopsap krishi
+Listner stop -->  lsnrctl stop 
+oracle stop --> su - oraxip --> sqlplus "/as sysdba" --> stop
+
+listner & oracle start -->  su - oraxip --> lsnrctl start --> sqlplus "/as sysdba" -->startup
+
+sap start-->  su - xipadm --> startsap krishi 
+
+archlog start 
+
+ioscan for tape --> ioscan -fnC tape 
+
+EXPORT
+
+exp mcarbon/mcarbon@orcl file=tejveer_tables.dmp tables=CM_USER_CONNECTION_DETAILS,CM_USER_LOGIN_DETAILS,CM_CONNECTION_DETAILS buffer=200000
+
+
+IMPORT 
+
+imp mcarbon/mcarbon@orcl file= tejveer_tables.dmp full=y ignore =y buffer=200000
+#############################################################
+dd bs=4M if=ubuntu-12.04.2-server-i386.iso of=/dev/sdb
+######
+ pip --proxy http://172.25.5.231:0000 install icinga2telegram

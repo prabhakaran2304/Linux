@@ -1,0 +1,67 @@
+route add -net 172.31.1.232 netmask 255.255.255.0 gw 172.31.1.10 dev eth0
+
+route add -net 172.31.1.232 netmask 255.255.255.0 gw 172.31.1.10
+route add 172.31.1.232 mask 255.255.255.0 172.31.1.10
+
+-------------------------------------------------
+
+route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+10.61.2.0       172.31.1.10     255.255.255.0   UG    0      0        0 eth0
+172.20.5.0      172.31.1.10     255.255.255.0   UG    0      0        0 eth0
+10.61.1.0       172.31.1.10     255.255.255.0   UG    0      0        0 eth0
+10.61.0.0       172.31.1.10     255.255.255.0   UG    0      0        0 eth0
+192.168.33.0    0.0.0.0         255.255.255.0   U     0      0        0 virbr1
+172.31.1.0      0.0.0.0         255.255.255.0   U     1      0        0 eth0
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+192.168.8.0     0.0.0.0         255.255.255.0   U     1      0        0 eth1
+172.17.0.0      0.0.0.0         255.255.0.0     U     0      0        0 docker0
+0.0.0.0         192.168.8.1     0.0.0.0         UG    0      0        0 eth1
+
+
+
+default via 192.168.8.1 dev enp5s0 proto static
+10.61.0.0/16 via 172.31.1.10 dev enp3s0
+172.20.5.0/24 via 172.31.1.10 dev enp3s0
+172.31.1.0/24 dev enp3s0 proto kernel scope link src 172.31.1.232
+192.168.8.0/24 dev enp5s0 proto kernel scope link src 192.168.8.100
+
+
+
+
+routes:
+   - to: 172.20.5.0/24
+     via: 172.31.1.10
+   - to: 10.61.0.0/16
+     via: 172.31.1.10
+	 
+--------------------
+rhel 
+
+
+
+
+route add -net 172.25.10.0 netmask 255.255.255.0 gw 172.25.10.254 dev bond1
+
+route del -net 172.25.10.0 netmask 255.255.255.0 gw 172.25.10.254 dev bond1
+
+
+
+
+route add -net 10.61.1.18 netmask 255.255.0.0 gw 172.25.11.254 dev bond2
+
+route del -net 10.61.1.18 netmask 255.255.255.255 gw 172.25.11.254 dev bond2
+
+
+
+route del -net 10.61.0.0 netmask 255.255.0.0 gw 172.25.11.254 dev bond2
+
+
+route del -net 172.25.11.0 netmask 255.255.255.0 gw 172.25.11.254 dev bond2
+
+route add -net 172.25.11.0 netmask 255.255.255.0 gw 172.25.11.254 dev bond2
+route add -net 172.25.11.0 netmask 255.255.255.0 gw 172.25.11.253 dev bond2
+
+route del -net 172.25.11.0 netmask 255.255.255.0 gw 172.25.11.254 dev bond2
+route del -net 172.25.11.0 netmask 255.255.255.0 gw 172.25.11.253 dev bond2

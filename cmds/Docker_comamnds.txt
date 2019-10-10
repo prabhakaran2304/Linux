@@ -1,0 +1,735 @@
+﻿
+
+
+
+-papple@123
+
+create database racktables;
+
+docker exec -i 1080d4f4c35c mysql -uroot  racktables < /stk/dockerswarm-stk/docker-stk-compose/racktables-2019-06-27.sql
+
+docker exec -it 0d25e49ae373 /bin/bash
+docker exec -i e0f5fea73625 mysql -uroot -papple@123 racktables < /home/infrausr/dockerswarm-stk/docker-stk-compose/racktables-2019-06-20.sql
+a4e9c0e2b11e
+#############################
+[root@docker-test docker_el7]# docker image ls
+REPOSITORY                 TAG                 IMAGE ID            CREATED             SIZE
+docker.io/jordan/icinga2   latest              820b7c6f1799        5 weeks ago         729 MB
+
+
+820b7c6f1799
+
+
+
+ docker save -o /home/infrausr/icinga2_docker_bck.tar 820b7c6f1799
+ 
+ 
+ 
+ docker load -i icinga2_docker_bck.tar
+ 
+ docker load < icinga2_docker_bck.tar
+------------------------------------------------------------------
+rename docker repository:- 
+
+docker tag e1699e8992e7 docker.io/jordan/icinga2
+
+
+docker run -p 443:443 -p 8443:8443 -p 8140:8140 -h foreman.sysadm.com --init --name foreman prabhakaran2304/foreman-ubuntu:0.15
+docker run --restart=always -d -p 443:443 -p 8443:8443 -p 8140:8140 -h foreman.sysadm.com --init --name foreman prabhakaran2304/foreman-ubuntu
+
+docker run -p 8003:8003 -h icinga2 -t jordan/icinga2:latest
+
+
+
+docker pull centos
+$ docker run centos
+
+-i, --interactive
+-t, --tty (“allocate a pseudo-TTY”, i.e. a terminal)
+(see docker run --help for details)
+
+$ docker run -i -t centos
+[root@4f0b435cdbd7 /]#
+===================================================================
+MySQL user 'root' has no password but only allows local connections
+
+
+
+Icinga Web 2 (/icingaweb2) default credentials: icingaadmin:icinga
+-----------------------
+docker machine && docker api 
+
+ 
+ Docker (easy!)
+Download: docker pull jarkt/docker-remote-api 
+Run: 
+docker run -p 2375:2375 -v /var/run/docker.sock:/var/run/docker.sock --name docker-remote-api jarkt/docker-remote-api 
+Start/Stop
+Start: docker start docker-remote-api
+Stop: docker stop docker-remote-api 
+ 
+ 
+ http://172.31.1.232:2375/_ping
+ ------------------------------------
+ docker exec -it 3d5781466bb1 /bin/bash
+ docker exec -it 3d5781466bb1 uptime
+  docker exec -it 3d5781466bb1 free -m
+ 
+ docker run -d -p 9000:9000 portainer/portainer
+ 
+ 
+ 
+  cat notifications.conf | docker exec -i cd8a11641c14 sh -c 'cat > /etc/icinga2/conf.d/notifications.conf
+  
+  
+ docker cp cd8a11641c14:/etc/icinga2/. icinga2
+ ---------------------------------------------------------------------
+ 
+ docker rmi 
+ docker rmi 
+ 
+stop all containers
+
+docker stop $(docker ps -a -q)
+remove all containers
+
+docker rm $(docker ps -a -q)
+remove all images
+
+docker rmi -f $(docker images -a -q)
+#################################################################
+
+docker pull jwilder/nginx-proxy
+
+docker pull thinfactory/racktables
+
+docker run --name=racktables -d --restart=unless-stopped \
+    -v /etc/racktables/secret.php:/var/www/html/inc/secret.php \
+    thinfactory/racktables -e VIRTUAL_HOST="dcassetdock.sysadm.com"
+	
+	-e VIRTUAL_HOST="dcassetdock.sysadm.com"
+	
+docker ps -a
+docker rm -f containersid
+
+[root@RHELREPOSRV infrausr]# htpasswd -nb admin Reset@123
+admin:$apr1$wqNVYQ//$MjHxbBqQ5GNP5sfGUTfEV/
+	
+	 htpasswd -nb admin apple@123
+admin:$apr1$1j2EB7vh$os2ZakG/64yKysSytvwe.1
+
+	
+	
+detach 
+docker run -d docker.io/thinfactory/racktables
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------
+
+[root@conkbmaster yum.repos.d]# vim kub.repo
+[root@conkbmaster yum.repos.d]# yum makecache
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+epel/x86_64/metalink                                                                                     | 7.6 kB  00:00:00
+ * base: centos.excellmedia.net
+ * epel: mirror.premi.st
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+base                                                                                                     | 3.6 kB  00:00:00
+extras                                                                                                   | 3.4 kB  00:00:00
+kubernetes/signature                                                                                     |  454 B  00:00:00
+Retrieving key from https://packages.cloud.google.com/yum/doc/yum-key.gpg
+Importing GPG key 0xA7317B0F:
+ Userid     : "Google Cloud Packages Automatic Signing Key <gc-team@google.com>"
+ Fingerprint: d0bc 747f d8ca f711 7500 d6fa 3746 c208 a731 7b0f
+ From       : https://packages.cloud.google.com/yum/doc/yum-key.gpg
+Is this ok [y/N]: yum repolist
+Is this ok [y/N]: y
+Retrieving key from https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+kubernetes/signature                                                                                     | 1.4 kB  00:00:09 !!!
+updates                                                                                                  | 3.4 kB  00:00:00
+(1/14): base/7/x86_64/other_db                                                                           | 2.5 MB  00:00:01
+(2/14): base/7/x86_64/filelists_db                                                                       | 6.9 MB  00:00:06
+(3/14): epel/x86_64/filelists                                                                            |  10 MB  00:00:12
+(4/14): epel/x86_64/prestodelta                                                                          |  887 B  00:00:00
+(5/14): extras/7/x86_64/prestodelta                                                                      | 100 kB  00:00:00
+(6/14): extras/7/x86_64/other_db                                                                         | 126 kB  00:00:00
+(7/14): kubernetes/filelists                                                                             |  13 kB  00:00:00
+(8/14): kubernetes/primary                                                                               |  37 kB  00:00:00
+(9/14): extras/7/x86_64/filelists_db                                                                     | 603 kB  00:00:01
+(10/14): updates/7/x86_64/prestodelta                                                                    | 672 kB  00:00:00
+(11/14): kubernetes/other                                                                                |  26 kB  00:00:00
+(12/14): updates/7/x86_64/other_db                                                                       | 574 kB  00:00:01
+(13/14): epel/x86_64/other                                                                               | 2.2 MB  00:00:04
+(14/14): updates/7/x86_64/filelists_db                                                                   | 3.3 MB  00:00:05
+epel                                                                                                                12742/12742
+epel                                                                                                                12742/12742
+kubernetes                                                                                                              266/266
+kubernetes                                                                                                              266/266
+kubernetes                                                                                                              266/266
+Metadata Cache Created
+[root@conkbmaster yum.repos.d]# yum repolist
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centos.excellmedia.net
+ * epel: ftp.jaist.ac.jp
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+repo id                                       repo name                                                                   status
+base/7/x86_64                                 CentOS-7 - Base                                                              9,911
+epel/x86_64                                   Extra Packages for Enterprise Linux 7 - x86_64                              12,742
+extras/7/x86_64                               CentOS-7 - Extras                                                              432
+kubernetes                                    Kubernetes                                                                     266
+updates/7/x86_64                              CentOS-7 - Updates                                                           1,589
+repolist: 24,940
+[root@conkbmaster yum.repos.d]# ls
+CentOS-Base.repo  CentOS-Debuginfo.repo  CentOS-Media.repo    client.repo_mv  epel-testing.repo  old_centos
+CentOS-CR.repo    CentOS-fasttrack.repo  CentOS-Sources.repo  epel.repo       kub.repo
+[root@conkbmaster yum.repos.d]#
+[root@conkbmaster yum.repos.d]# cd /home/infrausr/
+[root@conkbmaster infrausr]# ls
+centos7.5  docker  kub  ovirt-node
+[root@conkbmaster infrausr]# cd kub/
+[root@conkbmaster kub]# l
+-bash: l: command not found
+[root@conkbmaster kub]# yumdownloader kubeadm  --destdir /home/infrausr/docker --resolve
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centos.excellmedia.net
+ * epel: ftp.jaist.ac.jp
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+--> Running transaction check
+---> Package kubeadm.x86_64 0:1.12.1-0 will be installed
+--> Processing Dependency: kubernetes-cni >= 0.6.0 for package: kubeadm-1.12.1-0.x86_64
+--> Processing Dependency: kubelet >= 1.6.0 for package: kubeadm-1.12.1-0.x86_64
+--> Processing Dependency: kubectl >= 1.6.0 for package: kubeadm-1.12.1-0.x86_64
+--> Processing Dependency: cri-tools >= 1.11.0 for package: kubeadm-1.12.1-0.x86_64
+--> Running transaction check
+---> Package cri-tools.x86_64 0:1.12.0-0 will be installed
+---> Package kubectl.x86_64 0:1.12.1-0 will be installed
+---> Package kubelet.x86_64 0:1.12.1-0 will be installed
+---> Package kubernetes-cni.x86_64 0:0.6.0-0 will be installed
+--> Finished Dependency Resolution
+warning: /home/infrausr/docker/53edc739a0e51a4c17794de26b13ee5df939bd3161b37f503fe2af8980b41a89-cri-tools-1.12.0-0.x86_64.rpm: Header V4 RSA/SHA512 Signature, key ID 3e1ba8d5: NOKEY
+Public key for 53edc739a0e51a4c17794de26b13ee5df939bd3161b37f503fe2af8980b41a89-cri-tools-1.12.0-0.x86_64.rpm is not installed
+(1/5): 53edc739a0e51a4c17794de26b13ee5df939bd3161b37f503fe2af8980b41a89-cri-tools-1.12.0-0.x86_64.rpm    | 4.2 MB  00:00:01
+(2/5): 9c31cf74973740c100242b0cfc8d97abe2a95a3c126b1c4391c9f7915bdfd22b-kubeadm-1.12.1-0.x86_64.rpm      | 7.2 MB  00:00:01
+(3/5): ed7d25314d0fc930c9d0bae114016bf49ee852b3c4f243184630cf2c6cd62d43-kubectl-1.12.1-0.x86_64.rpm      | 7.7 MB  00:00:01
+(4/5): fe33057ffe95bfae65e2f269e1b05e99308853176e24a4d027bc082b471a07c0-kubernetes-cni-0.6.0-0.x86_64.rp | 8.6 MB  00:00:01
+(5/5): c4ebaa2e1ce38cda719cbe51274c4871b7ccb30371870525a217f6a430e60e3a-kubelet-1.12.1-0.x86_64.rpm      |  19 MB  00:00:03
+[root@conkbmaster kub]# yum install kubeadm
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centos.excellmedia.net
+ * epel: ftp.jaist.ac.jp
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+Resolving Dependencies
+--> Running transaction check
+---> Package kubeadm.x86_64 0:1.12.1-0 will be installed
+--> Processing Dependency: kubernetes-cni >= 0.6.0 for package: kubeadm-1.12.1-0.x86_64
+--> Processing Dependency: kubelet >= 1.6.0 for package: kubeadm-1.12.1-0.x86_64
+--> Processing Dependency: kubectl >= 1.6.0 for package: kubeadm-1.12.1-0.x86_64
+--> Processing Dependency: cri-tools >= 1.11.0 for package: kubeadm-1.12.1-0.x86_64
+--> Running transaction check
+---> Package cri-tools.x86_64 0:1.12.0-0 will be installed
+---> Package kubectl.x86_64 0:1.12.1-0 will be installed
+---> Package kubelet.x86_64 0:1.12.1-0 will be installed
+---> Package kubernetes-cni.x86_64 0:0.6.0-0 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================================================================
+ Package                           Arch                      Version                        Repository                     Size
+================================================================================================================================
+Installing:
+ kubeadm                           x86_64                    1.12.1-0                       kubernetes                    7.2 M
+Installing for dependencies:
+ cri-tools                         x86_64                    1.12.0-0                       kubernetes                    4.2 M
+ kubectl                           x86_64                    1.12.1-0                       kubernetes                    7.7 M
+ kubelet                           x86_64                    1.12.1-0                       kubernetes                     19 M
+ kubernetes-cni                    x86_64                    0.6.0-0                        kubernetes                    8.6 M
+
+Transaction Summary
+================================================================================================================================
+Install  1 Package (+4 Dependent packages)
+
+Total download size: 47 M
+Installed size: 236 M
+Is this ok [y/d/N]: y
+Downloading packages:
+warning: /var/cache/yum/x86_64/7/kubernetes/packages/53edc739a0e51a4c17794de26b13ee5df939bd3161b37f503fe2af8980b41a89-cri-tools-1.12.0-0.x86_64.rpm: Header V4 RSA/SHA512 Signature, key ID 3e1ba8d5: NOKEY
+Public key for 53edc739a0e51a4c17794de26b13ee5df939bd3161b37f503fe2af8980b41a89-cri-tools-1.12.0-0.x86_64.rpm is not installed
+(1/5): 53edc739a0e51a4c17794de26b13ee5df939bd3161b37f503fe2af8980b41a89-cri-tools-1.12.0-0.x86_64.rpm    | 4.2 MB  00:00:01
+(2/5): 9c31cf74973740c100242b0cfc8d97abe2a95a3c126b1c4391c9f7915bdfd22b-kubeadm-1.12.1-0.x86_64.rpm      | 7.2 MB  00:00:02
+(3/5): ed7d25314d0fc930c9d0bae114016bf49ee852b3c4f243184630cf2c6cd62d43-kubectl-1.12.1-0.x86_64.rpm      | 7.7 MB  00:00:01
+(4/5): fe33057ffe95bfae65e2f269e1b05e99308853176e24a4d027bc082b471a07c0-kubernetes-cni-0.6.0-0.x86_64.rp | 8.6 MB  00:00:01
+(5/5): c4ebaa2e1ce38cda719cbe51274c4871b7ccb30371870525a217f6a430e60e3a-kubelet-1.12.1-0.x86_64.rpm      |  19 MB  00:00:03
+--------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                           8.3 MB/s |  47 MB  00:00:05
+Retrieving key from https://packages.cloud.google.com/yum/doc/yum-key.gpg
+Importing GPG key 0xA7317B0F:
+ Userid     : "Google Cloud Packages Automatic Signing Key <gc-team@google.com>"
+ Fingerprint: d0bc 747f d8ca f711 7500 d6fa 3746 c208 a731 7b0f
+ From       : https://packages.cloud.google.com/yum/doc/yum-key.gpg
+Is this ok [y/N]: y
+Retrieving key from https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+Importing GPG key 0x3E1BA8D5:
+ Userid     : "Google Cloud Packages RPM Signing Key <gc-team@google.com>"
+ Fingerprint: 3749 e1ba 95a8 6ce0 5454 6ed2 f09c 394c 3e1b a8d5
+ From       : https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : kubernetes-cni-0.6.0-0.x86_64                                                                                1/5
+  Installing : kubelet-1.12.1-0.x86_64                                                                                      2/5
+  Installing : cri-tools-1.12.0-0.x86_64                                                                                    3/5
+  Installing : kubectl-1.12.1-0.x86_64                                                                                      4/5
+  Installing : kubeadm-1.12.1-0.x86_64                                                                                      5/5
+  Verifying  : kubelet-1.12.1-0.x86_64                                                                                      1/5
+  Verifying  : kubectl-1.12.1-0.x86_64                                                                                      2/5
+  Verifying  : kubernetes-cni-0.6.0-0.x86_64                                                                                3/5
+  Verifying  : cri-tools-1.12.0-0.x86_64                                                                                    4/5
+  Verifying  : kubeadm-1.12.1-0.x86_64                                                                                      5/5
+
+Installed:
+  kubeadm.x86_64 0:1.12.1-0
+
+Dependency Installed:
+  cri-tools.x86_64 0:1.12.0-0    kubectl.x86_64 0:1.12.1-0    kubelet.x86_64 0:1.12.1-0    kubernetes-cni.x86_64 0:0.6.0-0
+
+Complete!
+[root@conkbmaster kub]# systemctl restart docker && systemctl enable docker
+[root@conkbmaster kub]# systemctl  restart kubelet && systemctl enable kubelet
+Created symlink from /etc/systemd/system/multi-user.target.wants/kubelet.service to /etc/systemd/system/kubelet.service.
+[root@conkbmaster kub]# kubeadm init
+[init] using Kubernetes version: v1.12.1
+[preflight] running pre-flight checks
+        [WARNING Hostname]: hostname "conkbmaster.sysadm.com" could not be reached
+        [WARNING Hostname]: hostname "conkbmaster.sysadm.com" lookup conkbmaster.sysadm.com on 10.61.1.18:53: no such host
+[preflight] Some fatal errors occurred:
+        [ERROR Swap]: running with swap on is not supported. Please disable swap
+[preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`
+[root@conkbmaster kub]# swapoff -a
+[root@conkbmaster kub]# free -m
+              total        used        free      shared  buff/cache   available
+Mem:          64253        9825       52483          17        1945       53806
+Swap:             0           0           0
+[root@conkbmaster kub]# kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+[root@conkbmaster kub]#
+[root@conkbmaster kub]#
+[root@conkbmaster kub]#
+[root@conkbmaster kub]#
+[root@conkbmaster kub]#
+[root@conkbmaster kub]#
+[root@conkbmaster kub]#
+[root@conkbmaster kub]# kubeadm init
+[init] using Kubernetes version: v1.12.1
+[preflight] running pre-flight checks
+        [WARNING Hostname]: hostname "conkbmaster.sysadm.com" could not be reached
+        [WARNING Hostname]: hostname "conkbmaster.sysadm.com" lookup conkbmaster.sysadm.com on 10.61.1.18:53: no such host
+[preflight/images] Pulling images required for setting up a Kubernetes cluster
+[preflight/images] This might take a minute or two, depending on the speed of your internet connection
+[preflight/images] You can also perform this action in beforehand using 'kubeadm config images pull'
+[kubelet] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[preflight] Activating the kubelet service
+[certificates] Generated etcd/ca certificate and key.
+[certificates] Generated etcd/healthcheck-client certificate and key.
+[certificates] Generated etcd/server certificate and key.
+[certificates] etcd/server serving cert is signed for DNS names [conkbmaster.sysadm.com localhost] and IPs [127.0.0.1 ::1]
+[certificates] Generated etcd/peer certificate and key.
+[certificates] etcd/peer serving cert is signed for DNS names [conkbmaster.sysadm.com localhost] and IPs [172.31.1.186 127.0.0.1 ::1]
+[certificates] Generated apiserver-etcd-client certificate and key.
+[certificates] Generated front-proxy-ca certificate and key.
+[certificates] Generated front-proxy-client certificate and key.
+[certificates] Generated ca certificate and key.
+[certificates] Generated apiserver certificate and key.
+[certificates] apiserver serving cert is signed for DNS names [conkbmaster.sysadm.com kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 172.31.1.186]
+[certificates] Generated apiserver-kubelet-client certificate and key.
+[certificates] valid certificates and keys now exist in "/etc/kubernetes/pki"
+[certificates] Generated sa key and public key.
+[kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/admin.conf"
+[kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/kubelet.conf"
+[kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/controller-manager.conf"
+[kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/scheduler.conf"
+[controlplane] wrote Static Pod manifest for component kube-apiserver to "/etc/kubernetes/manifests/kube-apiserver.yaml"
+[controlplane] wrote Static Pod manifest for component kube-controller-manager to "/etc/kubernetes/manifests/kube-controller-manager.yaml"
+[controlplane] wrote Static Pod manifest for component kube-scheduler to "/etc/kubernetes/manifests/kube-scheduler.yaml"
+[etcd] Wrote Static Pod manifest for a local etcd instance to "/etc/kubernetes/manifests/etcd.yaml"
+[init] waiting for the kubelet to boot up the control plane as Static Pods from directory "/etc/kubernetes/manifests"
+[init] this might take a minute or longer if the control plane images have to be pulled
+[apiclient] All control plane components are healthy after 20.502136 seconds
+[uploadconfig] storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
+[kubelet] Creating a ConfigMap "kubelet-config-1.12" in namespace kube-system with the configuration for the kubelets in the cluster
+[markmaster] Marking the node conkbmaster.sysadm.com as master by adding the label "node-role.kubernetes.io/master=''"
+[markmaster] Marking the node conkbmaster.sysadm.com as master by adding the taints [node-role.kubernetes.io/master:NoSchedule]
+[patchnode] Uploading the CRI Socket information "/var/run/dockershim.sock" to the Node API object "conkbmaster.sysadm.com" as an annotation
+[bootstraptoken] using token: 13voa8.9dmafpbjnmuwl124
+[bootstraptoken] configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstraptoken] configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstraptoken] configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[bootstraptoken] creating the "cluster-info" ConfigMap in the "kube-public" namespace
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes master has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+You can now join any number of machines by running the following on each node
+as root:
+
+  kubeadm join 172.31.1.186:6443 --token 13voa8.9dmafpbjnmuwl124 --discovery-token-ca-cert-hash sha256:512690734a5c727cc26b15459c61c78eff46b970b0f7848d578f937935c9bccc
+
+------------
+[root@conkbmaster ~]# mkdir -p $HOME/.kube
+[root@conkbmaster ~]# ls -a
+.   anaconda-ks.cfg  .bash_logout   .bashrc  .kube    .pki  .tcshrc
+..  .bash_history    .bash_profile  .cshrc   .my.cnf  .ssh  .viminfo
+[root@conkbmaster ~]# sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+[root@conkbmaster ~]# sudo chown $(id -u):$(id -g) $HOME/.kube/config
+[root@conkbmaster ~]#
+[root@conkbmaster ~]#
+[root@conkbmaster ~]#
+[root@conkbmaster ~]# kubectl get nodes
+NAME                     STATUS     ROLES    AGE     VERSION
+conkbmaster.sysadm.com   NotReady   master   7m34s   v1.12.1
+[root@conkbmaster ~]#
+[root@conkbmaster ~]#
+[root@conkbmaster ~]#
+[root@conkbmaster ~]#
+[root@conkbmaster ~]#
+[root@conkbmaster ~]# ls
+anaconda-ks.cfg
+[root@conkbmaster ~]# cd /home/infrausr/
+[root@conkbmaster infrausr]# ls
+centos7.5  docker  kub  ovirt-node
+[root@conkbmaster infrausr]# cd ..
+[root@conkbmaster home]# ls
+infrausr
+[root@conkbmaster home]# cd ..
+[root@conkbmaster /]# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+(reverse-i-search)`k': ^Cbectl get nodes
+[root@conkbmaster /]# kubectl create -f^C
+[root@conkbmaster /]# kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+secret/kubernetes-dashboard-certs created
+serviceaccount/kubernetes-dashboard created
+role.rbac.authorization.k8s.io/kubernetes-dashboard-minimal created
+rolebinding.rbac.authorization.k8s.io/kubernetes-dashboard-minimal created
+deployment.apps/kubernetes-dashboard created
+service/kubernetes-dashboard created
+------------------------------
+yum install docker etcd kubernetes 
+ 
+for SERVICE in docker etcd kube-apiserver kube-controller-manager kube-scheduler kube-proxy kubelet; do 
+    systemctl restart $SERVICE
+    systemctl enable $SERVICE
+done
+ 
+yum install cockpit cockpit-kubernetes
+systemctl enable cockpit.socket
+systemctl start cockpit.socket
+---------------------
+
+
+
+
+docker volume create portainer_data
+$ docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+
+
+
+################################################################
+
+
+ htpasswd -nb admin apple@123
+admin:$apr1$n4pikySY$RjRxpw2WyodJuyem2qYJa0
+
+
+
+docker run -d \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v $PWD/traefik.toml:/traefik.toml \
+  -v $PWD/acme.json:/acme.json \
+  -p 80:80 \
+  -p 443:443 \
+  -l traefik.frontend.rule=Host:d1.sysadm.com \
+  -l traefik.port=8080 \
+  --network web \
+  --name traefik \
+  traefik:1.7.13
+
+########################################################################################################
+
+
+
+
+
+
+
+####################################################################
+docker save adminer | bzip2 | pv | \
+     ssh root@10.61.3.112 'bunzip2 | docker load'
+	 
+	 docker save thinfactory/racktables | bzip2 | \
+     ssh root@10.61.3.111 'bunzip2 | docker load'
+
+
+docker swarm join --token SWMTKN-1-3j6g0rinp3c5wpl1pk3on9kq7ml4oojfc2k4sw48tg3rm0frxo-esq68cvfb24r0gfyduflpqr2q 10.61.3.111:2377
+
+
+ http://172.31.1.232:8080/v1/scripts/4BC0CA92504EA6644C00:1546214400000:MFc5ahVfE84cp6IH2zkDkv1VKA
+ 
+ 
+ 
+ sudo docker run --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher 172.25.5.231:5000/rancher-agent http://172.31.1.232:8080/v1/scripts/4BC0CA92504EA6644C00:1546214400000:MFc5ahVfE84cp6IH2zkDkv1VKA
+
+###########################
+$apr1$ggWPmIep$WWwd5Dfihp.M8N3Hqw3am/
+
+
+ docker swarm init --advertise-addr 172.31.1.232
+ 
+ 
+Swarm initialized: current node (nibw6p7va5rlqv5tor2bjsyh5) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-1kq8pnq40g6k11icdeetyzo3x1bk6gd0hs3qstpe0dao8yjzor-9at5c7qpycaye1ku1rkppwi5p 172.31.1.232:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+
+
+docker node ls
+
+
+10.61.2.252:2377
+
+docker save traefik  > traefik.tar
+
+docker load < traefik.tar
+
+docker tag 1ab4081ed64a gcr.io/google-containers/etcd-amd64:latest
+
+
+
+docker run -d --restart=unless-stopped \
+  -p 80:80 -p 443:443 \
+  -v /stk/rancher:/var/lib/rancher \
+  rancher/rancher:latest
+  
+  oc cluster up --skip-registry-check=true
+##############################################
+docker service rm
+docker system prune
+
+
+docker stop $(docker ps -a -q)
+
+docker rm $(docker ps -a -q)
+
+docker rm -v $(docker ps -a -q)
+
+docker rmi  $(docker images -q)
+docker swarm leave --force
+
+docker network create --driver=overlay traefik-public
+
+
+
+docker stack deploy -c traefik-consul_new.yml traefik_stk
+
+######################
+docker pull swarmpit/swarmpit
+docker pull couchdb:2.3.0
+docker pull swarmpit/agent:latest
+rancher/server
+
+docker tag swarmpit/swarmpit:latest 172.25.5.231:5000/swarmpit
+docker tag couchdb:2.3.0 172.25.5.231:5000/couchdb
+docker tag swarmpit/agent:latest  172.25.5.231:5000/swarmpit-agent
+
+docker tag rancher/server 172.25.5.231:5000/rancher/server
+
+
+openssl passwd -apr1 apple@123
+
+$apr1$P/KYv7tj$Wr1WU6uEwK3TuoFVvcRFe.
+
+docker stack ps traefik-consul
+##############################
+
+
+docker run -d -p 5000:5000 -v /var/www/html/repos/dataimg:/var/lib/registry --restart always --name registry registry
+
+docker pull portainer/portainer
+
+docker tag portainer/portainer 172.25.5.231:5000/portainer
+
+/etc/docker/daemon.json  --> 
+{
+  "insecure-registries" : ["172.25.5.231:5000"]
+}
+
+systemctl restart docker
+
+ docker push 172.25.5.231:5000/portainer
+ 
+ curl -X GET http://172.25.5.231:5000/v2/_catalog
+ 
+ 
+ 
+docker pull portainer/agent
+docker tag portainer/agent 172.25.5.231:5000/portainer-agent
+docker push 172.25.5.231:5000/portainer-agent
+
+docker tag traefik 172.25.5.231:5000/traefik
+docker push 172.25.5.231:5000/traefik
+
+docker tag portainer/portainer 172.25.5.231:5000/portainer
+docker tag  portainer/agent 172.25.5.231:5000/portainer-agent
+
+docker push 172.25.5.231:5000/portainer 
+docker push 172.25.5.231:5000/portainer-agent
+docker pull consul
+docker tag consul 172.25.5.231:5000/consul
+docker push 172.25.5.231:5000/consul
+
+docker tag traefik:v2.0-alpine 172.25.5.231:5000/traefik:v2.0-alpine
+
+docker push 172.25.5.231:5000/traefik:v2.0-alpine
+
+
+docker tag  dockersamples/visualizer 172.25.5.231:5000/dock-visualizer
+docker push 172.25.5.231:5000/dock-visualizer
+docker tag thinfactory/racktables 172.25.5.231:5000/thinfactory-racktables
+docker push 172.25.5.231:5000/thinfactory-racktables
+
+####################################
+https://medium.com/hepsiburadatech/implementing-highly-available-rabbitmq-cluster-on-docker-swarm-using-consul-based-discovery-45c4e7919634
+
+
+
+
+##############################
+
+
+------------------------------------------------
+10.61.3.111  kubemaster1
+10.61.3.112  kubemaster2
+10.61.3.113  kubenode1
+10.61.3.114  kubenode2
+10.61.3.115  kubemaster3
+
+mkdir d01
+/dev/sdb1 /d01 xfs defaults 0 0
+
+
+
+gluster peer probe kubemaster2
+ 
+ 
+ gluster volume create d01 replica 2 transport tcp kubemaster2:/d01 kubemaster3:/d01 force
+gluster volume start d01
+volume start: d01: success
+
+
+mount -t glusterfs kubemaster1:/d01 /home/infrausr/d01data
+
+mount -t glusterfs kubemaster1:/d01 /home/infrausr/d01data
+mount -t glusterfs kubemaster2:/d01 /home/infrausr/d01data
+mount -t glusterfs kubemaster3:/d01 /home/infrausr/d01data
+
+
+mount -t glusterfs gluster1.osradar.local:/glusterfsvolumne /mnt/glusterfsvolumne
+
+gluster1.osradar.local:/glusterfsvolumne /mnt/glusterfsvolumne/ glusterfs  defaults,_netdev 0 0
+############################################################
+systemctl stop firewalld
+systemctl disable firewalld
+
+swapoff -a
+sed -i.bak -r 's/(.+ swap .+)/#\1/' /etc/fstab
+
+setenforce 0
+sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+########################################
+
+/etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kube*
+
+
+
+yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
+
+systemctl enable docker ;  systemctl start docker
+systemctl enable kubelet  ; systemctl start kubelet
+
+vi /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+
+sysctl --system
+
+##########################################
+
+
+docker run -d \
+   -p 81:80 \
+   --volumes-from pmm-data \
+   --name pmm-server \
+   --restart always \
+   percona/pmm-server
+
+

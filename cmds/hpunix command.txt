@@ -1,0 +1,59 @@
+/usr/lbin/modprpw -k root -->  unlock 
+
+
+HP unix
+du -sk * | sort -nr | more
+
+compress -v audit_201709*
+
+
+ system info
+ /opt/ignite/bin/print_manifest
+ 
+ bit
+ getconf KERNEL_BITS
+ ----------------------------------------
+tape scan:- 
+ 
+ ioscan -fnC disk
+ 
+----------------------------------------------------------------------------
+krishi --delete log 
+/oracle/XIP/saptrace -->find /oracle/XIP/saptrace -name core*
+
+
+krish
+/usr/sap/XIP/DVEBMGS03/log
+/usr/sap/XIP/DVEBMGS03/j2ee/cluster/server0/log/archive
+
+find  /usr/sap/XIP/DVEBMGS03/j2ee/cluster/server0/log/archive/*.zip -mtime +150 -exec mv "{}" /var/kamal \;
+
+
+find /var/kamal -mtime -$(( 3+30+31+29 )) -mtime +$(( 4+30+30 )) -exec ls -l "{}" \;
+
+
+---------------------
+
+
+
+
+
+
+
+ df -Pk | awk '{ 
+ if ( NR == 1 ) { next } 
+ if ( NF == 6 ) { print } 
+ if ( NF == 5 ) { next } 
+ if ( NF == 1 ) { 
+ getline record; 
+ $0 = $0 record 
+ print $0 
+ } 
+ }' | awk '
+BEGIN {print "Filesystem                                    Mount Point                 Total GB   Avail GB    Used GB  Used"
+       print "--------------------------------------------- ------------------------- ---------- ---------- ---------- -----"}
+END {print ""}
+/dev/ || /^[0-9a-zA-Z.]*:\// {
+printf ("%-45.45s %-25s %10.2f %10.2f %10.2f %4.0f%\n",$1,$6,$2/1024/1024,$4/1024/1024,$3/1024/1024,$5)
+}'
+

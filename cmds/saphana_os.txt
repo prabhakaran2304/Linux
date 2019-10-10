@@ -1,0 +1,33 @@
+chmod 777 tuned-profiles-sap-hana-2.8.0-5.el7_4.2.noarch.rpm
+rpm -ivh  tuned-profiles-sap-hana-2.8.0-5.el7_4.2.noarch.rpm
+
+systemctl start tuned
+systemctl enable tuned
+tuned-adm profile sap-hana
+systemctl status tuned
+
+cp /usr/lib/tuned/sap-hana/tuned.conf /etc/tuned/sap-hana/tuned.conf
+
+/etc/sysctl.d/sap_hana.conf --> add --> kernel.numa_balancing = 0
+
+systemctl stop numad
+systemctl disable numad
+systemctl statu numad
+
+
+Disable transparent hugepages
+With RHEL 7, the usage of transparent hugepages (THP) is generally activated in the Linux kernel. THP allow the handling of multiple pages as hugepages reducing the translation lookaside buffer footprint (TLB), in situations where it might be useful. Due to the special manner of HANA's memory management, the usage of THP may lead to hanging situations and performance degradations.
+If you use the „sap-hana“ tuned profile as describsd above “Transparent HugePages (THP)” will be disabled via the profile and you don’t need to additionally change this setting manually. To disable the usage of transparent hugepages during runtime, set the kernel settings at runtime with the command
+# echo never > /sys/kernel/mm/transparent_hugepage/enabled
+
+There is no need to shut down the database to apply this configuration. This setting is then valid until the next system start. To persist this option, it is nessesary to edit the OS bootloader configuration. The location of the bootloader configuration file is in the file /etc/default/grub.
+
+First, modify the file /etc/default/grub and append the following parameter to the line starting with “GRUB_CMDLINE_LINUX”:
+transparent_hugepage=never
+Then, in case of a non-UEFI configuration, activate the new configuration by issuing the command
+# grub2-mkconfig -o /boot/grub2/grub.cfg
+
+Or, in case of an UEFI configuration use
+# grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg
+Afterwards a reboot is required. In a scale-out environment, those changes have to be done on every server of the landscape.
+

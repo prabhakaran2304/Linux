@@ -1,0 +1,27 @@
+vgcreate vg_data /dev/sdb1 
+
+lvcreate -L50G vg_data -n usrsap
+lvcreate -L300G vg_data -n hanadata
+lvcreate -L100G vg_data -n hanalog
+lvcreate -L100G vg_data -n hanashared
+
+
+
+mkfs -t xfs /dev/mapper/vg_data-usrsap
+mkfs -t xfs /dev/mapper/vg_data-hanadata
+mkfs -t xfs /dev/mapper/vg_data-hanalog
+mkfs -t xfs /dev/mapper/vg_data-hanashared
+
+
+mkdir -p /hana/{shared,data,log}
+mkdir -p /usr/sap
+
+/dev/vg_data/usrsap /usr/sap xfs defaults 1 2
+/dev/vg_data/hanadata /hana/data xfs defaults 1 2
+/dev/vg_data/hanalog /hana/log xfs defaults 1 2
+/dev/vg_data/hanashared /hana/shared xfs defaults 1 2
+
+
+mount -av
+
+useradd -d /home/infrausr -m infrausr

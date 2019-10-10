@@ -1,0 +1,97 @@
+[root@elasticlog elasticsearch]# bin/x-pack/setup-passwords auto
+Initiating the setup of passwords for reserved users elastic,kibana,logstash_system.
+The passwords will be randomly generated and printed to the console.
+Please confirm that you would like to continue [y/N]y
+
+
+Changed password for user kibana
+PASSWORD kibana = T4wsT2zxpGXtBekOasKw
+
+Changed password for user logstash_system
+PASSWORD logstash_system = T5HWYAZdr1oueILY3ZKW
+
+Changed password for user elastic
+PASSWORD elastic = Gsz8J3tjNXJeJ10VN7a9
+
+
+DELETE /logstash-2018.11.01 
+ DELETE /winlogbeat-*
+
+
+PUT .kibana/_settings
+{
+"index": {
+"blocks": {
+"read_only_allow_delete": "false"
+}
+}
+}
+
+curl -XDELETE http://localhost:9200/test-2017-06
+
+bin/x-pack/users useradd admin -p Reset@123 -r superuser
+
+
+curl -u admin -XPUT 'http://172.25.5.231:9200/_xpack/security/user/elastic/_password?pretty' -H 'Content-Type: application/json' -d' 
+{ "password": "Reset@123" }' 
+
+[root@elasticlog x-pack]# curl -u elastic 'http://172.25.5.231:9200/_xpack/security/_authenticate?pretty'
+Enter host password for user 'elastic':
+{
+  "username" : "elastic",
+  "roles" : [
+    "superuser"
+  ],
+  "full_name" : null,
+  "email" : null,
+  "metadata" : {
+    "_reserved" : true
+  },
+  "enabled" : true
+}
+
+
+http://172.25.5.231:9200/ --> elastic ---> Reset@123 /// admin -->Reset@123
+172.25.5.231:5601
+ kibana -->Reset@123
+
+
+ 
+ ---------------
+ 
+ winlogbeat install windows --> 
+ 
+PS C:\Program Files\winlogbeat> Set-ExecutionPolicy unrestricted
+
+Execution Policy Change
+The execution policy helps protect you from scripts that you do not trust. Changing the execution policy might expose
+you to the security risks described in the about_Execution_Policies help topic at
+http://go.microsoft.com/fwlink/?LinkID=135170. Do you want to change the execution policy?
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"): A
+PS C:\Program Files\winlogbeat>
+PS C:\Program Files\winlogbeat>
+PS C:\Program Files\winlogbeat> Get-ExecutionPolicy
+Unrestricted
+PS C:\Program Files\winlogbeat> .\install-service-winlogbeat.ps1
+
+Security warning
+Run only scripts that you trust. While scripts from the internet can be useful, this script can potentially harm your
+computer. If you trust this script, use the Unblock-File cmdlet to allow the script to run without this warning
+message. Do you want to run C:\Program Files\winlogbeat\install-service-winlogbeat.ps1?
+[D] Do not run  [R] Run once  [S] Suspend  [?] Help (default is "D"): R
+
+Status   Name               DisplayName
+------   ----               -----------
+Stopped  winlogbeat         winlogbeat
+
+
+
+PS C:\Program Files\winlogbeat> .\winlogbeat.exe setup --dashboards
+Loaded dashboards
+PS C:\Program Files\winlogbeat>
+PS C:\Program Files\winlogbeat>
+
+
+service start the logstash
+-----------------------------------------------------------------------
+

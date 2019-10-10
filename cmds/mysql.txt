@@ -1,0 +1,203 @@
+GRANT ALL PRIVILEGES ON ona.* To 'ona'@'localhost' IDENTIFIED BY 'Apple@123';
+
+GRANT ALL PRIVILEGES ON graphite.* To 'graphite_user'@'127.0.0.1' IDENTIFIED BY 'Apple@123';
+
+create user rackuser@'localhost' identified by 'Apple@123';
+
+GRANT ALL PRIVILEGES ON *.* To 'rackuser'@'localhost' IDENTIFIED BY 'Apple@123';
+
+FLUSH PRIVILEGES;
+
+mysqldump -u [uname] -p[pass] db_name > db_backup.sql
+
+mysqldump -u dbadmin -p dba#123 --all-databases > all_db_backup_5.1.sql
+
+mysqldump -u [uname] -p[pass] --all-databases > all_db_backup.sql
+mysqldump -u [uname] -p[pass] db_name table1 table2 > table_backup.sql
+mysqldump -u [uname] -p[pass] db_name | gzip > db_backup.sql.gz
+mysqldump -P 3306 -h [ip_address] -u [uname] -p[pass] db_name > db_backup.sql
+
+backup:- 
+mysqldump -u [username] -p [databaseName] > [filename]-$(date +%F).sql
+
+Create a backup of an entire Database Management System (DBMS):
+mysqldump --all-databases --single-transaction --quick --lock-tables=false > full-backup-$(date +%F).sql -u root -p
+
+
+mysqldump --all-databases --single-transaction --quick --lock-tables=false > full-backup-5.1-$(date +%F).sql -u dbadmin -p 
+
+
+
+Back up a specific database. Replace db1 with the name of the database you want to back up:
+mysqldump -u username -p db1 --single-transaction --quick --lock-tables=false > db1-backup-$(date +%F).sql
+
+Back up a single table from any database. In the example below, table1 is exported from the database db1
+mysqldump -u username -p --single-transaction --quick --lock-tables=false db1 table1 > db1-table1-$(date +%F).sql
+
+restore
+mysql -u dbadmin -p db1 < db1-table1.sql
+
+racktables_212
+
+
+select User, Host from mysql.user;
+
+ SHOW GRANTS FOR 'dbadmin'@'172.20.40.100';
+
+
+
+create user dbadmin@'172.20.40.100' identified by 'Apple@123';
+grant all privileges on *.* to dbadmin@'112.20.40.100' ;
+
+update mysql.user set password=password("Apple@123") where user='dbadmin';
+
+database size --> 
+SELECT table_schema AS "Database", ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) AS "Size (MB)" FROM information_schema.TABLES GROUP BY table_schema;
+
+table size -->
+SELECT table_name AS "Table",ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)"FROM information_schema.TABLES WHERE table_schema = "zabbix"ORDER BY (data_length + index_length) DESC;
+
+select * from history_uint limit 5;
+
+
+mysql> SET foreign_key_checks = 0;
+mysql> SOURCE dump_file_name;
+mysql> SET foreign_key_checks = 1;
+
+grant all privileges on *.* to rsyslogdbadmin@'%' identified by 'Apple@123';
+ FLUSH PRIVILEGES;
+ grant all privileges on *.* to rackuser@'%' identified by 'Apple@123';
+  
+ 
+ rsyslogdb
+ CREATE DATABASE rsyslogdb;
+ 
+ 
+ root changes-->
+ SET PASSWORD FOR 'root'@'localhost' = PASSWORD("Apple@123");
+
+
+
+GRANT ALL ON rsyslogdb.* TO rsyslogdbadmin@localhost IDENTIFIED BY 'Apple@123';
+FLUSH PRIVILEGES;
+exit
+
+
+$ModLoad ommysql
+$ModLoad ommysql
+*.* :ommysql:127.0.0.1,rsyslogdb,rsyslogdbadmin,Apple@123
+ 
+ 
+ 
+ $db['host'] = 'localhost';
+$db['user'] = 'phpipam';
+$db['pass'] = 'phpipamadmin';
+$db['name'] = 'phpipam';
+ 
+ SQL> SET PAGESIZE 200
+SQL> SET LINESIZE 140
+ ---------------------------------------------------------------
+ 
+ 
+ 
+ 
+ [root@centdotproj mysql5.7.21]# 
+
+rpm -ivh mysql-community-common-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-common-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql-community-common-5.7.21-1.e################################# [100%]
+   
+[root@centdotproj mysql5.7.21]# rpm -ivh mysql-community-libs-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-libs-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql-community-libs-5.7.21-1.el7################################# [100%]
+[root@centdotproj mysql5.7.21]# rpm -ivh mysql-community-libs-compat-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-libs-compat-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql-community-libs-compat-5.7.2################################# [100%]
+[root@centdotproj mysql5.7.21]# rpm -ivh mysql-community-devel-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-devel-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql-community-devel-5.7.21-1.el################################# [100%]
+[root@centdotproj mysql5.7.21]# rpm -ivh mysql-community-embedded-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-embedded-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql-community-embedded-5.7.21-1################################# [100%]
+[root@centdotproj mysql5.7.21]# rpm -ivh mysql-community-embedded-compat-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-embedded-compat-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql-community-embedded-compat-5################################# [100%]
+[root@centdotproj mysql5.7.21]# rpm -ivh mysql-community-embedded-devel-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-embedded-devel-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql-community-embedded-devel-5.################################# [100%]
+[root@centdotproj mysql5.7.21]# rpm -ivh mysql-community-minimal-debuginfo-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-minimal-debuginfo-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql-community-minimal-debuginfo################################# [100%]
+[root@centdotproj mysql5.7.21]# rpm -ivh mysql-community-minimal-debuginfo-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-minimal-debuginfo-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+        package mysql-community-minimal-debuginfo-5.7.21-1.el7.x86_64 is already installed
+[root@centdotproj mysql5.7.21]# rpm -ivh mysql-community-server-minimal-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-server-minimal-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+        file /usr/bin/mysql_config from install of mysql-community-server-minimal-5.7.21-1.el7.x86_64 conflicts with file from package mysql-community-devel-5.7.21-1.el7.x86_64
+[root@centdotproj mysql5.7.21]# rpm -ivh mysql-community-server-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-server-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+error: Failed dependencies:
+        mysql-community-client(x86-64) >= 5.7.9 is needed by mysql-community-server-5.7.21-1.el7.x86_64
+[root@centdotproj mysql5.7.21]# rpm -ivh mysql-community-client-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-client-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql-community-client-5.7.21-1.e################################# [100%]
+[root@centdotproj mysql5.7.21]# rpm -ivh mysql-community-server-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-server-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql-community-server-5.7.21-1.e################################# [100%]
+[root@centdotproj mysql5.7.21]# rpm -ivh mysql-community-test-5.7.21-1.el7.x86_64.rpm
+
+warning: mysql-community-test-5.7.21-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+error: Failed dependencies:
+        perl(JSON) is needed by mysql-community-test-5.7.21-1.el7.x86_64
+
+		
+		
+		
+--------------------------------------------------------
+[root@centdotproj mysql5.7.21]# mysql
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)
+[root@centdotproj mysql5.7.21]# ^C
+[root@centdotproj mysql5.7.21]# systemctl start mysqld.service
+[root@centdotproj mysql5.7.21]# systemctl enable mysqld.service
+
+
+[root@centdotproj mysql5.7.21]# grep 'A temporary password is generated for root@localhost' /var/log/mysqld.log |tail -1
+2017-05-22T09:55:16.430545Z 1 [Note] A temporary password is generated for root@localhost: )AhFnt1F,mM&
+
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD("Apple@123");
+
